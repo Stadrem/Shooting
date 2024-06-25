@@ -34,6 +34,21 @@ public class PlayerMove : MonoBehaviour
         Vector3 dirV = Vector3.forward * v;
         Vector3 dir = dirH + dirV;
 
+        if (h > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -20);
+        }
+
+        if (h < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 20);
+        }
+
+        if (v != 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
         //dir의 크기를 1로 변경
         dir.Normalize();
 

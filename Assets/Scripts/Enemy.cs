@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    //속도
     public int speed = 5;
 
     //플레이어

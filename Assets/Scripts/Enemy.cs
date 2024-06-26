@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     //플레이어
     GameObject player;
 
+    //방향
     Vector3 dir;
 
     // Start is called before the first frame update
@@ -22,19 +23,26 @@ public class Enemy : MonoBehaviour
         {
             //40% 확률로 직선 방향
             dir = Vector3.back;
-            Debug.Log(random + " 직진");
         }
         else
         {
             //플레이어 찾기
             player = GameObject.Find("Player");
 
-            //60% 확률로 플레이어 방향
-            dir = player.transform.position - transform.position;
+            //플레이어를 잘 찾았다면
+            if(player != null)
+            {
+                //60% 확률로 플레이어 방향
+                dir = player.transform.position - transform.position;
 
-            //dir의 크기를 1로 변경
-            dir.Normalize();
-            Debug.Log(random + " 플레이어");
+                //dir의 크기를 1로 변경
+                dir.Normalize();
+            }
+            //Player를 못 찾았다면
+            else
+            {
+                dir = Vector3.back;
+            }
         }
     }
 
@@ -43,5 +51,21 @@ public class Enemy : MonoBehaviour
     {
         //2. 그 방향으로 이동
         transform.position += dir * speed * Time.deltaTime;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            //부딪힌 오브젝트 없애기
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.name.Contains("Bullet") == true)
+        {
+            other.gameObject.SetActive(false);
+        }
+
+        //나를 없애자
+        Destroy(gameObject);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 
-public class PlayerFire : MonoBehaviour
+public class PlayerFireBackup : MonoBehaviour
 {
     //bullt ÁöÁ¤
     public GameObject bulletMake;
@@ -11,25 +11,25 @@ public class PlayerFire : MonoBehaviour
     //¹ß»ç À§Ä¡ ÁöÁ¤
     public GameObject firePositionC;
 
-    //ÃÑ¾Ë °¹¼ö
-    public int bulletCount = 10;
-
     //»ý¼º½Ã°£
     public float createTime = 0.1f;
 
     //ÇöÀç½Ã°£
     public float currentTime = 0;
 
+    //ÃÑ¾Ë °¹¼ö
+    public int bulletCount = 10;
+
     //ÃÑ¾Ë ÅºÃ¢
-    public List<GameObject> magazine = new List<GameObject>();
+    GameObject[] bulletArrayA;
 
     private void Start()
     {
-        for(int i = 0; i < bulletCount; i++)
+        for (int i = 0; i < bulletCount; i++)
         {
-            magazine.Add(Instantiate(bulletMake));
+            bulletArrayA[i] = Instantiate(bulletMake);
 
-            magazine[i].SetActive(false);
+            bulletArrayA[i].gameObject.SetActive(false);
         }
     }
 
@@ -44,11 +44,11 @@ public class PlayerFire : MonoBehaviour
             {
                 for (int j = 0; j < bulletCount; j++)
                 {
-                    if (magazine[j].gameObject.activeSelf == false)
+                    if (bulletArrayA[j].gameObject.activeSelf == false)
                     {
-                        magazine[j].transform.position = firePositionC.transform.position;
-
-                        magazine[j].SetActive(true);
+                        bulletArrayA[j].gameObject.SetActive(true);
+                        
+                        bulletArrayA[j].transform.position = firePositionC.transform.position;
 
                         currentTime = 0;
 

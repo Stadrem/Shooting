@@ -37,18 +37,5 @@ public class EnemyManager : MonoBehaviour
             //생성시간 랜덤
             createTime = Random.Range(0.5f, 1);
         }
-
-        /*
-        //1번 키를 누르면
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            //Enemy를 하나 생성
-
-            GameObject enemyCreat = Instantiate(enemyPrefab, transform.position, transform.rotation);
-
-            //Enemy 위치 변경
-            //enemyCreat.transform.position = transform.position;
-        }
-        */
     }
 }

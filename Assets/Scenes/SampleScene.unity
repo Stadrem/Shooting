@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5743952971608534370, guid: 7e9a117c314ba3440828f347be9aa1e1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5812910738625833393, guid: 7e9a117c314ba3440828f347be9aa1e1, type: 3}
       propertyPath: m_Name
       value: DestroyZone (2)
@@ -250,6 +254,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1715070181385028149, guid: 7e9a117c314ba3440828f347be9aa1e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743952971608534370, guid: 7e9a117c314ba3440828f347be9aa1e1, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5812910738625833393, guid: 7e9a117c314ba3440828f347be9aa1e1, type: 3}
@@ -447,8 +455,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.45820963, g: 0.48021197, b: 0.8050314, a: 1}
-  m_Intensity: 1.41
+  m_Color: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -853,6 +861,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5743952971608534370, guid: 7e9a117c314ba3440828f347be9aa1e1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5812910738625833393, guid: 7e9a117c314ba3440828f347be9aa1e1, type: 3}
       propertyPath: m_Name
       value: DestroyZone (3)
@@ -926,6 +938,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5743952971608534370, guid: 7e9a117c314ba3440828f347be9aa1e1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5812910738625833393, guid: 7e9a117c314ba3440828f347be9aa1e1, type: 3}
       propertyPath: m_Name
       value: DestroyZone
@@ -947,9 +963,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 297326304840081874, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 297326304840081874, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}
+      propertyPath: m_LODs.Array.data[1].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 494017735311138822, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427982554815847672, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427982554815847672, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427982554815847672, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2427982554815847672, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -992,19 +1028,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6360332626051384388, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}
-      propertyPath: createTime
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 6360332626051384388, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}
-      propertyPath: bulletCount
+      propertyPath: bulletCountB
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6360332626051384388, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}
-      propertyPath: bulletNum.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+      propertyPath: muzzleEffect
+      value: 
+      objectReference: {fileID: 100014, guid: a57a6829db3568c4d9bdc37e9e63c017, type: 3}
+    m_RemovedComponents:
+    - {fileID: 297326304840081874, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 846954383893291590, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}
+    - {fileID: 3718417166983364744, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 745afcd5af5a5154c86b1ce7fa0f28f0, type: 3}

@@ -1,26 +1,26 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
-
+//
 public class PlayerFireBackup : MonoBehaviour
 {
-    //bullt ÁöÁ¤
+    //bullt ì§€ì •
     public GameObject bulletMake;
 
-    //¹ß»ç À§Ä¡ ÁöÁ¤
+    //ë°œì‚¬ ìœ„ì¹˜ ì§€ì •
     public GameObject firePositionC;
 
-    //»ı¼º½Ã°£
+    //ìƒì„±ì‹œê°„
     public float createTime = 0.1f;
 
-    //ÇöÀç½Ã°£
+    //í˜„ì¬ì‹œê°„
     public float currentTime = 0;
 
-    //ÃÑ¾Ë °¹¼ö
+    //ì´ì•Œ ê°¯ìˆ˜
     public int bulletCount = 10;
 
-    //ÃÑ¾Ë ÅºÃ¢
+    //ì´ì•Œ íƒ„ì°½
     GameObject[] bulletArrayA;
 
     private void Start()

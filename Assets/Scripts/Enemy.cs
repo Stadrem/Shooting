@@ -1,44 +1,46 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    //¼Óµµ
+    //ì†ë„
     public float speed = 5;
 
-    //ÇÃ·¹ÀÌ¾î
+    public GameObject effectObject;
+
+    //í”Œë ˆì´ì–´
     GameObject player;
 
-    //¹æÇâ
+    //ë°©í–¥
     Vector3 dir;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Random.Range 0~9 »çÀÌÀÇ ¼ıÀÚ ´ëÀÔ
+        //Random.Range 0~9 ì‚¬ì´ì˜ ìˆ«ì ëŒ€ì…
         int random = Random.Range(0, 10);
         
         if (random < 4)
         {
-            //40% È®·ü·Î Á÷¼± ¹æÇâ
+            //40% í™•ë¥ ë¡œ ì§ì„  ë°©í–¥
             dir = Vector3.back;
         }
         else
         {
-            //ÇÃ·¹ÀÌ¾î Ã£±â
+            //í”Œë ˆì´ì–´ ì°¾ê¸°
             player = GameObject.Find("Player");
 
-            //ÇÃ·¹ÀÌ¾î¸¦ Àß Ã£¾Ò´Ù¸é
+            //í”Œë ˆì´ì–´ë¥¼ ì˜ ì°¾ì•˜ë‹¤ë©´
             if(player != null)
             {
-                //60% È®·ü·Î ÇÃ·¹ÀÌ¾î ¹æÇâ
+                //60% í™•ë¥ ë¡œ í”Œë ˆì´ì–´ ë°©í–¥
                 dir = player.transform.position - transform.position;
 
-                //dirÀÇ Å©±â¸¦ 1·Î º¯°æ
+                //dirì˜ í¬ê¸°ë¥¼ 1ë¡œ ë³€ê²½
                 dir.Normalize();
             }
-            //Player¸¦ ¸ø Ã£¾Ò´Ù¸é
+            //Playerë¥¼ ëª» ì°¾ì•˜ë‹¤ë©´
             else
             {
                 dir = Vector3.back;
@@ -46,10 +48,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    // Update is called once per frame.
     void Update()
     {
-        //2. ±× ¹æÇâÀ¸·Î ÀÌµ¿
+        //2. ê·¸ ë°©í–¥ìœ¼ë¡œ ì´ë™
         transform.position += dir * speed * Time.deltaTime;
     }
 
@@ -57,15 +59,21 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            //ºÎµúÈù ¿ÀºêÁ§Æ® ¾ø¾Ö±â
+            //ë¶€ë”ªíŒ ì˜¤ë¸Œì íŠ¸ ì—†ì• ê¸°
             Destroy(other.gameObject);
+
+            GameObject effect = Instantiate(effectObject);
+            effect.transform.position = transform.position;
         }
         else if (other.gameObject.name.Contains("Bullet") == true)
         {
             other.gameObject.SetActive(false);
+
+            GameObject effect = Instantiate(effectObject);
+            effect.transform.position = transform.position;
         }
 
-        //³ª¸¦ ¾ø¾ÖÀÚ
+        //ë‚˜ë¥¼ ì—†ì• ì
         Destroy(gameObject);
     }
 }

@@ -122,8 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8df7243074ef9240a24a9c161472d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 40
   effectObject: {fileID: 100008, guid: 06736895ea0a4ff408d25e6684dce797, type: 3}
+  trModel: {fileID: 6249052699951994127}
 --- !u!54 &1766818030769865065
 Rigidbody:
   m_ObjectHideFlags: 0

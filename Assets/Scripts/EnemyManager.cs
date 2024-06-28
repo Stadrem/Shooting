@@ -1,40 +1,40 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    // Enemy Prefab ¼³Á¤
+    // Enemy Prefab ì„¤ì •
     public GameObject enemyPrefab;
 
-    //»ı¼º½Ã°£
+    //ìƒì„±ì‹œê°„
     public float createTime = 0;
 
-    //ÇöÀç½Ã°£
+    //í˜„ì¬ì‹œê°„
     public float currentTime = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        createTime = Random.Range(0.5f, 1);
+        createTime = Random.Range(0.2f, 0.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //½Ã°£À» Èå¸£°Ô ÇÔ
+        //ì‹œê°„ì„ íë¥´ê²Œ í•¨
         currentTime += Time.deltaTime;
 
-        //¸¸¾à¿¡ 1ÃÊ°¡ Áö³µ´Ù¸é
+        //ë§Œì•½ì— 1ì´ˆê°€ ì§€ë‚¬ë‹¤ë©´
         if (currentTime > createTime)
         {
-            //Enemy¸¦ ÇÏ³ª »ı¼º
+            //Enemyë¥¼ í•˜ë‚˜ ìƒì„±
             GameObject enemyCreate = Instantiate(enemyPrefab, transform.position, transform.rotation);
 
-            //½Ã°£ ÃÊ±âÈ­
+            //ì‹œê°„ ì´ˆê¸°í™”
             currentTime = 0;
 
-            //»ı¼º½Ã°£ ·£´ı
+            //ìƒì„±ì‹œê°„ ëœë¤
             createTime = Random.Range(0.5f, 1);
         }
     }

@@ -15,15 +15,18 @@ public class Enemy : MonoBehaviour
     //방향
     Vector3 dir;
 
+    //모양의 transform
+    public Transform trModel;
+
     // Start is called before the first frame update
     void Start()
     {
         //Random.Range 0~9 사이의 숫자 대입
         int random = Random.Range(0, 10);
         
-        if (random < 4)
+        if (random < 2)
         {
-            //40% 확률로 직선 방향
+            //20% 확률로 직선 방향
             dir = Vector3.back;
         }
         else
@@ -34,7 +37,7 @@ public class Enemy : MonoBehaviour
             //플레이어를 잘 찾았다면
             if(player != null)
             {
-                //60% 확률로 플레이어 방향
+                //80% 확률로 플레이어 방향
                 dir = player.transform.position - transform.position;
 
                 //dir의 크기를 1로 변경
@@ -46,7 +49,11 @@ public class Enemy : MonoBehaviour
                 dir = Vector3.back;
             }
         }
+        //모양의 정면을 dir로 셋팅
+
+        trModel.forward = dir;
     }
+
 
     // Update is called once per frame.
     void Update()

@@ -53,53 +53,67 @@ public class PlayerFire : MonoBehaviour
         currentTime += Time.deltaTime;
         currentTimeB += Time.deltaTime;
 
-        if (Input.GetButton("Fire1"))
+        //if (Input.GetButton("Fire1"))
+        //{
+        if (currentTime > createTime)
         {
-            if (currentTime > createTime)
+            for (int j = 0; j < bulletCount; j++)
             {
-                for (int j = 0; j < bulletCount; j++)
+                if (magazine[j].gameObject.activeSelf == false)
                 {
-                    if (magazine[j].gameObject.activeSelf == false)
-                    {
-                        magazine[j].transform.position = firePositionC.transform.position;
+                    magazine[j].transform.position = firePositionC.transform.position;
 
-                        magazine[j].SetActive(true);
+                    magazine[j].SetActive(true);
 
-                        currentTime = 0;
+                    BulletFire bulletComp = magazine[j].GetComponent<BulletFire>();
 
-                        break;
-                    }
-                }
-            }
-            if (currentTimeB > createTimeB)
-            {
-                for (int j = 0; j < bulletCountB; j++)
-                {
-                    if (magazineB[j].gameObject.activeSelf == false)
-                    {
-                        magazineB[j].transform.position = firePositionA.transform.position;
+                    bulletComp.PlaySound();
 
-                        magazineB[j].SetActive(true);
+                    currentTime = 0;
 
-                        currentTimeB = 0;
-
-                        break;
-                    }
-                }
-                for (int j = 0; j < bulletCountB; j++)
-                {
-                    if (magazineB[j].gameObject.activeSelf == false)
-                    {
-                        magazineB[j].transform.position = firePositionB.transform.position;
-
-                        magazineB[j].SetActive(true);
-
-                        currentTimeB = 0;
-
-                        break;
-                    }
+                    break;
                 }
             }
         }
+        if (currentTimeB > createTimeB)
+        {
+            for (int j = 0; j < bulletCountB; j++)
+            {
+                if (magazineB[j].gameObject.activeSelf == false)
+                {
+                    magazineB[j].transform.position = firePositionA.transform.position;
+
+                    magazineB[j].SetActive(true);
+
+                    BulletFire bulletComp = magazineB[j].GetComponent<BulletFire>();
+
+                    bulletComp.PlaySound();
+
+                    currentTimeB = 0;
+
+                    break;
+                }
+            }
+            for (int j = 0; j < bulletCountB; j++)
+            {
+                if (magazineB[j].gameObject.activeSelf == false)
+                {
+                    magazineB[j].transform.position = firePositionB.transform.position;
+
+                    magazineB[j].SetActive(true);
+
+                    BulletFire bulletComp = magazineB[j].GetComponent<BulletFire>();
+
+                    bulletComp.PlaySound();
+
+                    currentTimeB = 0;
+
+                    break;
+                }
+            }
+            currentTime = 0;
+            currentTimeB = 0;
+        }
+        //}
     }
 }

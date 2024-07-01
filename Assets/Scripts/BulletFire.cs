@@ -5,16 +5,17 @@ using UnityEngine;
 public class BulletFire : MonoBehaviour
 {
     public float speed = 30;
+    GameObject player;
 
     void Start()
     {
-
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.forward * speed * Time.deltaTime;
+        transform.position += transform.forward * speed * Time.deltaTime;
     }
 
     public void PlaySound()

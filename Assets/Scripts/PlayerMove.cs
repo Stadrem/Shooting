@@ -7,7 +7,6 @@ public class PlayerMove : MonoBehaviour
     float speed = 20;
     float h = 0;
     float v = 0;
-    float rootSpeed = 100;
 
     // Update is called once per frame
     void Update()

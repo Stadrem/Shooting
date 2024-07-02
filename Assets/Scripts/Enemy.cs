@@ -78,6 +78,20 @@ public class Enemy : MonoBehaviour
 
             GameObject effect = Instantiate(effectObject);
             effect.transform.position = transform.position;
+
+            /*
+            //ScoreManager GameObject 찾기
+            GameObject goSm = GameObject.Find("ScoreManager");
+
+            //찾은 Object가 가지고 있는 ScoreManager Component 가져오기
+            ScoreManage sm = goSm.GetComponent<ScoreManage>();
+
+            //가지고 있는 AddScore 함수 실행
+            sm.AddScore(10);
+            */
+
+            ScoreManage.instance.AddScore(10);
+
         }
 
         //나를 없애자

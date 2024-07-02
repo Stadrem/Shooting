@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerFire : MonoBehaviour
 {
-    //bullt 지정
+    //bullt 모양 지정
     public GameObject bulletMake;
     public GameObject bulletMakeB;
 
@@ -16,8 +16,8 @@ public class PlayerFire : MonoBehaviour
     public GameObject firePositionC;
 
     //총알 갯수
-    public int bulletCount = 10;
-    public int bulletCountB = 10;
+    int bulletCount = 10;
+    int bulletCountB = 10;
     int bulletCountC = 45;
 
     //생성시간
@@ -40,6 +40,7 @@ public class PlayerFire : MonoBehaviour
 
     private void Start()
     {
+        //Fire1 탄창 장전
         for (int i = 0; i < bulletCount; i++)
         {
             magazine.Add(Instantiate(bulletMake));
@@ -53,18 +54,12 @@ public class PlayerFire : MonoBehaviour
             magazineB[i].SetActive(false);
         }
 
-        //총알을 8개 만들기
+        //Fire2 360 총알 탄창 bulletCountC 갯수 만큼 만들기
         for (int i = 0; i < bulletCountC; i++)
         {
             magazineC.Add(Instantiate(bulletMake));
 
             magazineC[i].SetActive(false);
-
-            magazineC[i].transform.position = transform.position;
-
-            magazineC[i].transform.rotation = Quaternion.Euler(0, 360 / bulletCountC * i, 0);
-
-            magazineC[i].transform.position += magazineC[i].transform.forward * 5;
         }
     }
 
@@ -75,23 +70,26 @@ public class PlayerFire : MonoBehaviour
         currentTimeB += Time.deltaTime;
         currentTimeC += Time.deltaTime;
 
-        //if (Input.GetButton("Fire1"))
-        //{
+        if (Input.GetButton("Fire1"))
+        {
+            Fire1Fire();
+        }
+
+        if (Input.GetButton("Fire2"))
+        {
+            Fire2Fire();
+        }
+    }
+
+    void Fire1Fire()
+    {
         if (currentTime > createTime)
         {
             for (int j = 0; j < bulletCount; j++)
             {
                 if (magazine[j].gameObject.activeSelf == false)
                 {
-                    magazine[j].transform.position = firePositionC.transform.position;
-
-                    magazine[j].SetActive(true);
-
-                    BulletFire bulletComp = magazine[j].GetComponent<BulletFire>();
-
-                    bulletComp.PlaySound();
-
-                    currentTime = 0;
+                    BulletFire(j);
 
                     break;
                 }
@@ -105,13 +103,7 @@ public class PlayerFire : MonoBehaviour
                 {
                     magazineB[j].transform.position = firePositionA.transform.position;
 
-                    magazineB[j].SetActive(true);
-
-                    BulletFire bulletComp = magazineB[j].GetComponent<BulletFire>();
-
-                    bulletComp.PlaySound();
-
-                    currentTimeB = 0;
+                    BulletFireB(j);
 
                     break;
                 }
@@ -122,62 +114,69 @@ public class PlayerFire : MonoBehaviour
                 {
                     magazineB[j].transform.position = firePositionB.transform.position;
 
-                    magazineB[j].SetActive(true);
-
-                    BulletFire bulletComp = magazineB[j].GetComponent<BulletFire>();
-
-                    bulletComp.PlaySound();
-
-                    currentTimeB = 0;
+                    BulletFireB(j);
 
                     break;
                 }
             }
         }
-        /*
-        if (currentTimeC > createTimeC)
+    }
+
+    void BulletFire(int j)
+    {
+        magazine[j].transform.position = firePositionC.transform.position;
+
+        magazine[j].SetActive(true);
+
+        BulletFire bulletComp = magazine[j].GetComponent<BulletFire>();
+
+        bulletComp.PlaySound();
+
+        currentTime = 0;
+    }
+
+    void BulletFireB(int i)
+    {
+        magazineB[i].SetActive(true);
+
+        BulletFire bulletComp = magazineB[i].GetComponent<BulletFire>();
+
+        bulletComp.PlaySound();
+
+        currentTimeB = 0;
+    }
+
+    void Fire2Fire()
+    {
+        bulletTimer += Time.deltaTime;
+
+        //0.05초마다 탄창 배열에서 순차적으로 가져오기
+        if (bulletTimer >= 0.05f && bIndex < bulletCountC)
         {
-            for (int k = 0; k < bulletCountC; k++)
-            {
+            //총알의 위치를 플레이어 위치로
+            magazineC[bIndex].transform.position = transform.position;
 
-                magazineC[k].transform.position = transform.position;
+            //총알 위치 및 방향 지정
+            //Y축, 360도 / 총알의 갯수 만큼 * 총알의 배열 번호
+            magazineC[bIndex].transform.rotation = Quaternion.Euler(0, 360 / bulletCountC * bIndex, 0);
 
-                magazineC[k].transform.rotation = Quaternion.Euler(0, 360 / bulletCountC * k, 0);
+            //총알의 정면 방향으로 5 만큼 배치
+            magazineC[bIndex].transform.position += magazineC[bIndex].transform.forward * 5;
 
-                magazineC[k].transform.position += magazineC[k].transform.forward * 5;
+            magazineC[bIndex].SetActive(true);
 
-                magazineC[k].SetActive(true);
+            //이펙트, 사운드
+            BulletFire bulletComp = magazineC[bIndex].GetComponent<BulletFire>();
+            bulletComp.PlaySound();
 
-                BulletFire bulletComp = magazineC[k].GetComponent<BulletFire>();
+            bulletTimer = 0f;
 
-                bulletComp.PlaySound();
-
-                currentTimeC = 0;
-            }
+            bIndex++;
         }
-        */
-
-        if (Input.GetButton("Fire2"))
+        //총알 배열 최대 발사에 도달하면 0으로 초기화
+        else if (bIndex == bulletCountC)
         {
-            bulletTimer += Time.deltaTime;
-
-            if (bulletTimer >= 0.05f && bIndex < bulletCountC)
-            {
-                magazineC[bIndex].transform.position = transform.position;
-                magazineC[bIndex].transform.rotation = Quaternion.Euler(0, 360 / bulletCountC * bIndex, 0);
-                magazineC[bIndex].transform.position += magazineC[bIndex].transform.forward * 5;
-                magazineC[bIndex].SetActive(true);
-
-                BulletFire bulletComp = magazineC[bIndex].GetComponent<BulletFire>();
-                bulletComp.PlaySound();
-
-                bulletTimer = 0f; // Reset the timer
-                bIndex++; // Move to the next bullet
-            }
-            else if (bIndex == bulletCountC)
-            {
-                bIndex = 0;
-            }
+            bIndex = 0;
         }
     }
 }

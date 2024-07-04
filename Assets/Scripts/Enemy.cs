@@ -90,7 +90,8 @@ public class Enemy : MonoBehaviour
             sm.AddScore(10);
             */
 
-            ScoreManage.instance.AddScore(10);
+            ScoreManage.instance.CrurrentScore = 10;
+            ScoreManage.instance.Number = 10;
 
         }
 

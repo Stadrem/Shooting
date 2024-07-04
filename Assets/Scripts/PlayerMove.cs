@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -47,5 +48,12 @@ public class PlayerMove : MonoBehaviour
         transform.position += dir * speed * Time.deltaTime;
         
         #endregion
+    }
+
+    //이 오브젝트가 파괴되면 호출되는 함수
+    private void OnDestroy()
+    {
+        //게임오버 화면으로 전환
+        SceneManager.LoadScene("GameOver");
     }
 }

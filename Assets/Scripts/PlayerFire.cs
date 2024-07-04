@@ -130,7 +130,8 @@ public class PlayerFire : MonoBehaviour
 
         BulletFire bulletComp = magazine[j].GetComponent<BulletFire>();
 
-        bulletComp.PlaySound();
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(audioSource.clip);
 
         currentTime = 0;
     }
@@ -141,7 +142,8 @@ public class PlayerFire : MonoBehaviour
 
         BulletFire bulletComp = magazineB[i].GetComponent<BulletFire>();
 
-        bulletComp.PlaySound();
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(audioSource.clip);
 
         currentTimeB = 0;
     }
@@ -167,7 +169,9 @@ public class PlayerFire : MonoBehaviour
 
             //이펙트, 사운드
             BulletFire bulletComp = magazineC[bIndex].GetComponent<BulletFire>();
-            bulletComp.PlaySound();
+
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.PlayOneShot(audioSource.clip);
 
             bulletTimer = 0f;
 

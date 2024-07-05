@@ -46,7 +46,20 @@ public class PlayerMove : MonoBehaviour
 
         //이동 공식 p = p0 + vt
         transform.position += dir * speed * Time.deltaTime;
-        
+
+        //화면 밖으로 나가지 못하게 함
+        //나의 위치값을 viewport 값으로 변환
+        Vector3 viewPortPoint = Camera.main.WorldToViewportPoint(transform.position);
+
+        //만약에 viewPortPoint.x의 값이 0보다 작으면 --왼쪽
+        //만약에 viewPortPoint.x의 값이 1보다 크면 --오른쪽
+        //만약에 viewPortPoint.y의 값이 0보다 작으면  --아래쪽
+        //만약에 viewPortPoint.y의 값이 1보다 크면 --위쪽
+        if (viewPortPoint.x < 0 || viewPortPoint.x > 1 || viewPortPoint.y < 0 || viewPortPoint.y > 1)
+        {
+            //이동한 만큼 되돌리자
+            transform.position -= dir * speed * Time.deltaTime;
+        }
         #endregion
     }
 

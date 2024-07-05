@@ -64,13 +64,25 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //나의 HP를 줄이자
+        HPSystem myHP = GetComponent<HPSystem>();
+
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             //부딪힌 오브젝트 없애기
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
+
+            //HPSystem 컴포넌트 가져오기
+            HPSystem hp = other.GetComponent<HPSystem>();
+
+            //가져온 컴포넌트의 UpdateHP 함수 실행
+            hp.UpdateHP(-1f);
 
             GameObject effect = Instantiate(effectObject);
             effect.transform.position = transform.position;
+
+            //나를 없애자
+            Destroy(gameObject);
         }
         else if (other.gameObject.name.Contains("Bullet") == true)
         {
@@ -78,6 +90,9 @@ public class Enemy : MonoBehaviour
 
             GameObject effect = Instantiate(effectObject);
             effect.transform.position = transform.position;
+
+            //가져온 컴포넌트에서 UpdateHP 함수 호출
+            myHP.UpdateHP(-1);
 
             /*
             //ScoreManager GameObject 찾기
@@ -92,10 +107,6 @@ public class Enemy : MonoBehaviour
 
             ScoreManage.instance.CrurrentScore = 10;
             ScoreManage.instance.Number = 10;
-
         }
-
-        //나를 없애자
-        Destroy(gameObject);
     }
 }

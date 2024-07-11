@@ -106,7 +106,6 @@ public class Enemy : MonoBehaviour
             */
 
             ScoreManage.instance.CrurrentScore = 10;
-            ScoreManage.instance.Number = 10;
         }
     }
 }

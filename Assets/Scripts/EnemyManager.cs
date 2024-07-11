@@ -22,6 +22,12 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 현재 게임 중이 아니라면 함수를 나가자
+        if (GameManager.instance.isPlaying == false)
+        {
+            return;
+        }
+
         //시간을 흐르게 함
         currentTime += Time.deltaTime;
 

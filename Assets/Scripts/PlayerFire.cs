@@ -66,6 +66,12 @@ public class PlayerFire : MonoBehaviour
     // Update is called once per frame//
     void Update()
     {
+        // 현재 게임 중이 아니라면 함수를 나가자
+        if (GameManager.instance.isPlaying == false)
+        {
+            return;
+        }
+
         currentTime += Time.deltaTime;
         currentTimeB += Time.deltaTime;
         currentTimeC += Time.deltaTime;

@@ -20,18 +20,6 @@ public class ScoreManage : MonoBehaviour
     //최고 점수 UI
     public Text bestScoreText;
 
-    int number;
-
-    public int Number
-    {
-        get { 
-            return number; 
-        }
-        set { 
-            number = value;
-        }
-    }
-
     public int CrurrentScore
     {
         get
@@ -55,15 +43,6 @@ public class ScoreManage : MonoBehaviour
             bestScore = value;
             bestScoreText.text = "최고 점수 : " + bestScore;
         }
-    }
-
-    public int GetNumber()
-    {
-        return number;
-    }
-    public void SetNumber(int value)
-    {
-        number = value;
     }
 
     private void Awake()
@@ -96,12 +75,6 @@ public class ScoreManage : MonoBehaviour
         BestScore = PlayerPrefs.GetInt("Best_Score", 0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void AddScore(int addValue)
     {
         currentScore += addValue;
@@ -112,14 +85,6 @@ public class ScoreManage : MonoBehaviour
         //만약에 현재 점수가 최고 점수를 넘었는가
         if(currentScore > bestScore)
         {
-            /*
-            //최고 점수를 현재 점수로 세팅
-            bestScore = currentScore;
-
-            //최고 점수 UI를 갱신
-            bestScoreText.text = "최고 점수 : " + bestScore;
-            */
-
             BestScore = currentScore;
 
             //최고 점수를 저장
